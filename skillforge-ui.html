@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillForge Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-panel: #0d0d0d;
+            --bg-card: #111111;
+            --border: #1a1a1a;
+            --green: #00ff88;
+            --green-dim: #00cc6a;
+            --green-dark: #004d28;
+            --amber: #ffb347;
+            --amber-dim: #cc8a2e;
+            --cyan: #00e5ff;
+            --pink: #ff6eb4;
+            --red: #ff4444;
+            --purple: #b388ff;
+            --blue: #64b5f6;
+            --text: #b0b0b0;
+            --text-dim: #555555;
+            --text-bright: #e0e0e0;
+            --cursor: #00ff88;
+            --scanline: rgba(0, 255, 136, 0.03);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; background: #000; }
+        body { font-family: 'JetBrains Mono', monospace; color: var(--text); }
+
+        /* CRT outer frame */
+        .crt-frame {
+            height: 100%;
+            background: var(--bg);
+            position: relative;
+            display: grid;
+            grid-template-columns: 220px 1fr 240px;
+            grid-template-rows: auto 1fr;
+        }
+
+        /* Scanline overlay */
+        .crt-frame::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                var(--scanline) 2px,
+                var(--scanline) 4px
+            );
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Vignette */
+        .vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.7) 100%);
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* Header */
+        .term-header {
+            grid-column: 1 / -1;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-panel);
+        }
+        .term-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .term-logo-text {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            color: var(--green);
+            text-shadow: 0 0 10px rgba(0,255,136,0.5);
+        }
+        .term-logo-ver {
+            font-size: 9px;
+            color: var(--text-dim);
+        }
+        .ascii-anvil {
+            font-size: 10px;
+            color: var(--amber);
+            line-height: 1;
+            text-shadow: 0 0 6px rgba(255,179,71,0.4);
+        }
+        .hdr-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+        .hdr-stats b {
+            color: var(--green);
+            text-shadow: 0 0 4px rgba(0,255,136,0.3);
+        }
+
+        /* Sidebar */
+        .term-sidebar {
+            border-right: 1px solid var(--border);
+            background: var(--bg-panel);
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .sb-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 7px;
+            color: var(--text-dim);
+            padding: 4px 0 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 8px;
+        }
+        .sb-item {
+            padding: 6px 8px;
+            border-radius: 3px;
+            margin-bottom: 3px;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .sb-item:hover { background: var(--bg-card); border-left-color: var(--text-dim); }
+        .sb-item.active { background: rgba(0,255,136,0.05); border-left-color: var(--green); }
+        .sb-name { font-size: 11px; font-weight: 500; color: var(--text-bright); margin-bottom: 2px; }
+        .sb-desc { font-size: 9px; color: var(--text-dim); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .sb-meta { display: flex; gap: 6px; margin-top: 4px; font-size: 8px; }
+        .sb-tag { padding: 0 4px; border-radius: 2px; font-weight: 700; }
+        .sb-tag-h { color: var(--cyan); background: rgba(0,229,255,0.08); }
+        .sb-tag-e { color: var(--pink); background: rgba(255,110,180,0.08); }
+
+        /* Terminal main */
+        .term-main {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--bg);
+        }
+        .term-output {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 16px;
+        }
+
+        /* Terminal line styles */
+        .t-line { margin-bottom: 4px; font-size: 12px; line-height: 1.6; }
+        .t-line.t-user {
+            color: var(--cyan);
+        }
+        .t-line.t-user::before {
+            content: '> ';
+            color: var(--cyan);
+            opacity: 0.5;
+        }
+        .t-line.t-system { color: var(--text-dim); font-size: 11px; }
+        .t-line.t-system::before {
+            content: '// ';
+            color: var(--text-dim);
+            opacity: 0.4;
+        }
+        .t-line.t-route { font-size: 11px; }
+        .t-line.t-route .mode-explore { color: var(--amber); }
+        .t-line.t-route .mode-execute { color: var(--green); }
+        .t-line.t-agent { font-size: 11px; }
+        .t-line.t-agent .a-name { font-weight: 700; }
+        .t-line.t-agent .a-action { color: var(--text-dim); }
+        .t-line.t-agent .a-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+        .a-dot-work { background: var(--amber); animation: blink 0.8s infinite; }
+        .a-dot-done { background: var(--green); }
+        .a-dot-err { background: var(--red); }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+        /* Color per agent */
+        .a-planner { color: var(--amber); }
+        .a-researcher { color: var(--blue); }
+        .a-formatter { color: var(--green); }
+        .a-skill_extractor { color: var(--pink); }
+        .a-parameter_extractor { color: var(--purple); }
+        .a-system { color: var(--red); }
+
+        /* Output block */
+        .t-output-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 12px 14px;
+            margin: 8px 0;
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-bright);
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            position: relative;
+        }
+        .t-output-block.out-explore { border-left: 2px solid var(--amber); }
+        .t-output-block.out-execute { border-left: 2px solid var(--green); }
+        .t-output-meta {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+        .t-output-meta .via { color: var(--purple); }
+        .t-fb { display: flex; gap: 4px; margin-top: 4px; }
+        .t-fb button {
+            background: none; border: 1px solid var(--border);
+            color: var(--text-dim); font-size: 10px; padding: 2px 8px;
+            border-radius: 3px; cursor: pointer; font-family: 'JetBrains Mono', monospace;
+            transition: all 0.15s;
+        }
+        .t-fb button:hover { border-color: var(--green); color: var(--green); }
+        .t-fb .fb-good { border-color: var(--green) !important; color: var(--green) !important; }
+        .t-fb .fb-bad { border-color: var(--red) !important; color: var(--red) !important; }
+
+        /* Skill learned */
+        .t-learned {
+            border: 1px solid var(--pink);
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin: 8px 0;
+            background: rgba(255,110,180,0.03);
+            animation: glow-in 1s ease-out;
+        }
+        @keyframes glow-in {
+            0% { box-shadow: 0 0 20px rgba(255,110,180,0.4); }
+            100% { box-shadow: none; }
+        }
+        .t-learned-head {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 8px;
+            color: var(--pink);
+            margin-bottom: 6px;
+            text-shadow: 0 0 8px rgba(255,110,180,0.4);
+        }
+        .t-learned-name { font-size: 12px; font-weight: 700; color: var(--text-bright); margin-bottom: 3px; }
+        .t-learned-desc { font-size: 10px; color: var(--text); line-height: 1.4; margin-bottom: 3px; }
+        .t-learned-params { font-size: 9px; color: var(--text-dim); }
+
+        /* Separator */
+        .t-sep {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 10px 0;
+        }
+
+        /* Input area */
+        .term-input-area {
+            padding: 8px 16px 12px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-panel);
+        }
+        .term-prompt {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        .prompt-symbol {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            color: var(--green);
+            text-shadow: 0 0 8px rgba(0,255,136,0.4);
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        .term-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-bright);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            outline: none;
+            caret-color: var(--cursor);
+        }
+        .term-input::placeholder { color: var(--text-dim); }
+        .term-input:disabled { opacity: 0.4; }
+        .term-enter {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 8px;
+            background: none;
+            border: 1px solid var(--green-dark);
+            color: var(--green-dim);
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-left: 8px;
+        }
+        .term-enter:hover { background: rgba(0,255,136,0.08); border-color: var(--green); color: var(--green); }
+        .term-enter:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* Right panel */
+        .term-panel {
+            border-left: 1px solid var(--border);
+            background: var(--bg-panel);
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .pn-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 7px;
+            color: var(--text-dim);
+            padding: 4px 0 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 8px;
+        }
+        .pn-block { margin-bottom: 12px; }
+        .pn-label { font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+        .pn-val { font-size: 11px; color: var(--text-bright); }
+        .pn-mode-e { color: var(--green); text-shadow: 0 0 4px rgba(0,255,136,0.3); }
+        .pn-mode-x { color: var(--amber); text-shadow: 0 0 4px rgba(255,179,71,0.3); }
+        .pn-empty { font-size: 10px; color: var(--text-dim); padding: 10px 0; }
+
+        /* Pipeline */
+        .pn-pipe { padding-left: 14px; position: relative; }
+        .pn-pipe::before { content: ''; position: absolute; left: 3px; top: 4px; bottom: 4px; width: 1px; background: var(--border); }
+        .pn-step { position: relative; padding: 3px 0 10px; }
+        .pn-step::before {
+            content: ''; position: absolute; left: -13px; top: 7px;
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--bg-card); border: 1px solid var(--text-dim);
+        }
+        .pn-step.active::before { background: var(--amber); border-color: var(--amber); box-shadow: 0 0 6px rgba(255,179,71,0.5); }
+        .pn-step.done::before { background: var(--green); border-color: var(--green); }
+        .pn-step-name { font-size: 10px; font-weight: 500; color: var(--text); }
+        .pn-step-act { font-size: 9px; color: var(--text-dim); }
+        .pn-step-dur { font-size: 8px; color: var(--text-dim); }
+
+        /* Welcome */
+        .welcome-term { padding: 30px 20px; }
+        .welcome-ascii {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--green);
+            line-height: 1.3;
+            white-space: pre;
+            text-shadow: 0 0 10px rgba(0,255,136,0.3);
+            margin-bottom: 16px;
+        }
+        .welcome-msg {
+            font-size: 12px;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .welcome-msg .hi { color: var(--green); }
+        .welcome-examples { display: flex; flex-direction: column; gap: 4px; }
+        .welcome-ex {
+            font-size: 11px;
+            color: var(--text-dim);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 3px;
+            transition: all 0.15s;
+            border-left: 2px solid transparent;
+        }
+        .welcome-ex::before { content: '$ '; color: var(--green); opacity: 0.4; }
+        .welcome-ex:hover { color: var(--text-bright); background: var(--bg-card); border-left-color: var(--green); }
+
+        /* Typing cursor animation */
+        .typing-cursor::after {
+            content: '|';
+            color: var(--cursor);
+            animation: blink 0.7s step-end infinite;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        @media (max-width: 900px) {
+            .crt-frame { grid-template-columns: 1fr; }
+            .term-sidebar, .term-panel { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="crt-frame"></div>
+    <div class="vignette"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.6/babel.min.js"></script>
+    <script type="text/babel">
+        var useState = React.useState;
+        var useEffect = React.useEffect;
+        var useRef = React.useRef;
+        var BASE = "http://localhost:8000";
+
+        function App() {
+            var _sk = useState([]); var skills = _sk[0]; var setSkills = _sk[1];
+            var _ms = useState([]); var msgs = _ms[0]; var setMsgs = _ms[1];
+            var _in = useState(""); var input = _in[0]; var setInput = _in[1];
+            var _ru = useState(false); var running = _ru[0]; var setRunning = _ru[1];
+            var _as = useState(null); var actSkill = _as[0]; var setActSkill = _as[1];
+            var _ex = useState(null); var exec = _ex[0]; var setExec = _ex[1];
+            var _st = useState([]); var steps = _st[0]; var setSteps = _st[1];
+            var _ss = useState({}); var stats = _ss[0]; var setStats = _ss[1];
+            var endRef = useRef(null);
+
+            function scroll() { if (endRef.current) endRef.current.scrollIntoView({ behavior: "smooth" }); }
+            useEffect(scroll, [msgs]);
+            useEffect(function() { refresh(); }, []);
+
+            function refresh() {
+                fetch(BASE + "/api/skills").then(function(r) { return r.json(); }).then(setSkills).catch(function() {});
+                fetch(BASE + "/api/stats").then(function(r) { return r.json(); }).then(setStats).catch(function() {});
+            }
+
+            function submit(txt) {
+                var task = txt || input.trim();
+                if (!task || running) return;
+                setInput(""); setRunning(true); setSteps([]);
+                setMsgs(function(p) { return p.concat([{ t: "sep" }, { t: "user", c: task }]); });
+
+                fetch(BASE + "/api/task", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ task: task }) })
+                .then(function(r) { if (!r.ok) throw new Error("failed"); return r.json(); })
+                .then(function(tr) {
+                    setExec({ mode: tr.mode, skill: tr.skill_used, conf: tr.skill_confidence });
+                    setMsgs(function(p) { return p.concat([{
+                        t: "route", mode: tr.mode,
+                        c: tr.skill_used ? "skill matched: " + tr.skill_used + " [" + (tr.skill_confidence * 100).toFixed(0) + "% confidence]" : "no match found, entering explore mode..."
+                    }]); });
+
+                    var es = new EventSource(BASE + "/api/task/" + tr.execution_id + "/stream");
+                    es.onmessage = function(e) {
+                        var d = JSON.parse(e.data);
+                        if (d.event_type === "agent_start") {
+                            var ag = d.agent || "unknown";
+                            setSteps(function(p) { return p.concat([{ agent: ag, action: d.content || d.action, status: "active" }]); });
+                            setMsgs(function(p) { return p.concat([{ t: "agent", agent: ag, action: d.content || d.action, status: "working" }]); });
+                        }
+                        if (d.event_type === "agent_output") {
+                            setSteps(function(p) { return p.map(function(s, i) { return i === p.length - 1 ? Object.assign({}, s, { status: "done", dur: (d.metadata && d.metadata.duration_ms) || 0 }) : s; }); });
+                        }
+                        if (d.event_type === "complete") {
+                            var m = d.metadata || {};
+                            setMsgs(function(p) { return p.concat([{
+                                t: "output", mode: tr.mode, c: d.content,
+                                dur: m.total_duration_ms || 0, tok: m.total_tokens || 0,
+                                cost: m.estimated_cost || 0, skill: m.skill_used || tr.skill_used,
+                                eid: tr.execution_id
+                            }]); });
+                        }
+                        if (d.event_type === "extracting_skill") {
+                            setSteps(function(p) { return p.concat([{ agent: "skill_extractor", action: "forging new skill...", status: "active" }]); });
+                            setMsgs(function(p) { return p.concat([{ t: "agent", agent: "skill_extractor", action: "analyzing trace to forge a new skill...", status: "working" }]); });
+                        }
+                        if (d.event_type === "skill_extracted") {
+                            setSteps(function(p) { return p.map(function(s, i) { return i === p.length - 1 && s.agent === "skill_extractor" ? Object.assign({}, s, { status: "done" }) : s; }); });
+                            setMsgs(function(p) { return p.concat([{ t: "learned", meta: d.metadata }]); });
+                            refresh();
+                        }
+                        if (d.event_type === "skill_duplicate") {
+                            setMsgs(function(p) { return p.concat([{ t: "agent", agent: "skill_extractor", action: d.content, status: "done" }]); });
+                        }
+                        if (d.event_type === "extraction_failed") {
+                            setMsgs(function(p) { return p.concat([{ t: "agent", agent: "system", action: "extraction failed", status: "error" }]); });
+                        }
+                        if (d.event_type === "error") {
+                            setMsgs(function(p) { return p.concat([{ t: "agent", agent: "system", action: d.content, status: "error" }]); });
+                            es.close(); setRunning(false);
+                        }
+                        if (d.event_type === "done" || d.event_type === "timeout") {
+                            es.close(); setRunning(false); refresh();
+                        }
+                    };
+                    es.onerror = function() { es.close(); setRunning(false); };
+                }).catch(function(err) {
+                    setMsgs(function(p) { return p.concat([{ t: "agent", agent: "system", action: "error: " + err.message, status: "error" }]); });
+                    setRunning(false);
+                });
+            }
+
+            var examples = [
+                "Research the latest developments in System One AI models",
+                "Compare LangGraph vs CrewAI vs AutoGen",
+                "Find free alternatives to Pinecone for vector search",
+                "Summarize what RLCD training is and why it matters"
+            ];
+
+            return React.createElement(React.Fragment, null,
+                // Header
+                React.createElement("header", { className: "term-header" },
+                    React.createElement("div", { className: "term-logo" },
+                        React.createElement("span", { className: "ascii-anvil" }, "/\\"),
+                        React.createElement("span", { className: "term-logo-text" }, "SkillForge"),
+                        React.createElement("span", { className: "term-logo-ver" }, "v2.0")
+                    ),
+                    React.createElement("div", { className: "hdr-stats" },
+                        React.createElement("span", null, "skills ", React.createElement("b", null, stats.total_skills || skills.length)),
+                        React.createElement("span", null, "runs ", React.createElement("b", null, stats.total_executions || 0)),
+                        React.createElement("span", null, "hit% ", React.createElement("b", null, ((stats.execute_ratio || 0) * 100).toFixed(0))),
+                        React.createElement("span", null, "speed ", React.createElement("b", null, (stats.speedup_factor || 0) + "x"))
+                    )
+                ),
+
+                // Sidebar
+                React.createElement("aside", { className: "term-sidebar" },
+                    React.createElement("div", { className: "sb-title" }, "// skill library"),
+                    skills.map(function(s) {
+                        return React.createElement("div", {
+                            key: s.id,
+                            className: "sb-item" + (actSkill === s.id ? " active" : ""),
+                            onClick: function() { setActSkill(s.id === actSkill ? null : s.id); }
+                        },
+                            React.createElement("div", { className: "sb-name" }, s.name),
+                            React.createElement("div", { className: "sb-desc" }, s.description),
+                            React.createElement("div", { className: "sb-meta" },
+                                React.createElement("span", { className: "sb-tag " + (s.source === "hardcoded" ? "sb-tag-h" : "sb-tag-e") }, s.source),
+                                React.createElement("span", { style: { color: "var(--text-dim)" } }, "x" + ((s.stats && s.stats.times_used) || 0))
+                            )
+                        );
+                    })
+                ),
+
+                // Main terminal
+                React.createElement("main", { className: "term-main" },
+                    React.createElement("div", { className: "term-output" },
+                        msgs.length === 0 ?
+                            React.createElement("div", { className: "welcome-term" },
+                                React.createElement("div", { className: "welcome-ascii" },
+                                    "   _____ _    _ _ _ _____                    \n" +
+                                    "  / ____| |  (_) | |  ____|                   \n" +
+                                    " | (___ | | ___| | | |__ ___  _ __ __ _  ___ \n" +
+                                    "  \\___ \\| |/ / | | |  __/ _ \\| '__/ _` |/ _ \\\n" +
+                                    "  ____) |   <| | | | | | (_) | | | (_| |  __/\n" +
+                                    " |_____/|_|\\_\\_|_|_|_|  \\___/|_|  \\__, |\\___|\n" +
+                                    "                                   __/ |     \n" +
+                                    "                                  |___/      "
+                                ),
+                                React.createElement("div", { className: "welcome-msg" },
+                                    React.createElement("span", { className: "hi" }, "system ready."), " give me a task. i'll figure it out, learn a reusable skill from my own execution, and route to it next time."
+                                ),
+                                React.createElement("div", { className: "welcome-examples" },
+                                    examples.map(function(ex, i) {
+                                        return React.createElement("div", {
+                                            key: i,
+                                            className: "welcome-ex",
+                                            onClick: function() { setInput(ex); submit(ex); }
+                                        }, ex);
+                                    })
+                                )
+                            )
+                        :
+                        msgs.map(function(m, i) {
+                            if (m.t === "sep") return React.createElement("hr", { key: i, className: "t-sep" });
+                            if (m.t === "user") return React.createElement("div", { key: i, className: "t-line t-user" }, m.c);
+                            if (m.t === "route") return React.createElement("div", { key: i, className: "t-line t-route" },
+                                React.createElement("span", { className: m.mode === "execute" ? "mode-execute" : "mode-explore" },
+                                    m.mode === "execute" ? "[EXECUTE] " : "[EXPLORE] "
+                                ), m.c
+                            );
+                            if (m.t === "agent") return React.createElement("div", { key: i, className: "t-line t-agent" },
+                                React.createElement("span", {
+                                    className: "a-dot " + (m.status === "error" ? "a-dot-err" : m.status === "working" ? "a-dot-work" : "a-dot-done")
+                                }),
+                                React.createElement("span", { className: "a-name a-" + m.agent }, m.agent),
+                                " ",
+                                React.createElement("span", { className: "a-action" }, m.action)
+                            );
+                            if (m.t === "output") return React.createElement("div", { key: i },
+                                React.createElement("div", { className: "t-output-block " + (m.mode === "execute" ? "out-execute" : "out-explore") },
+                                    m.c,
+                                    React.createElement("div", { className: "t-output-meta" },
+                                        React.createElement("span", null, (m.dur / 1000).toFixed(1) + "s"),
+                                        React.createElement("span", null, m.tok + " tok"),
+                                        React.createElement("span", null, "$" + m.cost.toFixed(4)),
+                                        m.skill ? React.createElement("span", { className: "via" }, "via " + m.skill) : null
+                                    ),
+                                    React.createElement("div", { className: "t-fb" },
+                                        React.createElement("button", { onClick: function(e) { e.target.classList.add("fb-good"); fetch(BASE + "/api/feedback?execution_id=" + m.eid + "&feedback=positive", { method: "POST" }); } }, "[good]"),
+                                        React.createElement("button", { onClick: function(e) { e.target.classList.add("fb-bad"); fetch(BASE + "/api/feedback?execution_id=" + m.eid + "&feedback=negative", { method: "POST" }); } }, "[bad]")
+                                    )
+                                )
+                            );
+                            if (m.t === "learned") {
+                                var md = m.meta || {};
+                                return React.createElement("div", { key: i, className: "t-learned" },
+                                    React.createElement("div", { className: "t-learned-head" }, ">> new skill forged"),
+                                    React.createElement("div", { className: "t-learned-name" }, md.skill_name),
+                                    React.createElement("div", { className: "t-learned-desc" }, md.skill_description),
+                                    md.parameters ? React.createElement("div", { className: "t-learned-params" }, "params: " + md.parameters.join(", ")) : null
+                                );
+                            }
+                            return null;
+                        }),
+                        running ? React.createElement("div", { className: "t-line typing-cursor", style: { color: "var(--text-dim)" } }, "processing") : null,
+                        React.createElement("div", { ref: endRef })
+                    ),
+
+                    // Input
+                    React.createElement("div", { className: "term-input-area" },
+                        React.createElement("div", { className: "term-prompt" },
+                            React.createElement("span", { className: "prompt-symbol" }, ">_"),
+                            React.createElement("input", {
+                                className: "term-input",
+                                value: input,
+                                onChange: function(e) { setInput(e.target.value); },
+                                onKeyDown: function(e) { if (e.key === "Enter") { e.preventDefault(); submit(); } },
+                                placeholder: "enter task...",
+                                disabled: running,
+                                autoFocus: true
+                            }),
+                            React.createElement("button", {
+                                className: "term-enter",
+                                onClick: function() { submit(); },
+                                disabled: running || !input.trim()
+                            }, running ? "forging" : "enter")
+                        )
+                    )
+                ),
+
+                // Right panel
+                React.createElement("aside", { className: "term-panel" },
+                    React.createElement("div", { className: "pn-title" }, "// execution"),
+                    exec ?
+                        React.createElement(React.Fragment, null,
+                            React.createElement("div", { className: "pn-block" },
+                                React.createElement("div", { className: "pn-label" }, "mode"),
+                                React.createElement("div", { className: "pn-val " + (exec.mode === "execute" ? "pn-mode-e" : "pn-mode-x") },
+                                    exec.mode === "execute" ? "[EXECUTE]" : "[EXPLORE]"
+                                )
+                            ),
+                            exec.skill ? React.createElement("div", { className: "pn-block" },
+                                React.createElement("div", { className: "pn-label" }, "skill"),
+                                React.createElement("div", { className: "pn-val" }, exec.skill)
+                            ) : null,
+                            React.createElement("div", { className: "pn-block" },
+                                React.createElement("div", { className: "pn-label" }, "confidence"),
+                                React.createElement("div", { className: "pn-val" }, ((exec.conf || 0) * 100).toFixed(0) + "%")
+                            ),
+                            React.createElement("div", { className: "pn-block" },
+                                React.createElement("div", { className: "pn-label" }, "pipeline"),
+                                React.createElement("div", { className: "pn-pipe" },
+                                    steps.map(function(s, i) {
+                                        return React.createElement("div", { key: i, className: "pn-step " + s.status },
+                                            React.createElement("div", { className: "pn-step-name" }, s.agent),
+                                            React.createElement("div", { className: "pn-step-act" }, s.action),
+                                            s.dur > 0 ? React.createElement("div", { className: "pn-step-dur" }, (s.dur / 1000).toFixed(1) + "s") : null
+                                        );
+                                    })
+                                )
+                            )
+                        )
+                    : React.createElement("div", { className: "pn-empty" }, "waiting for task...")
+                )
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("app")).render(React.createElement(App));
+    </script>
+</body>
+</html>
