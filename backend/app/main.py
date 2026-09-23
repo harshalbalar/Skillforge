@@ -59,6 +59,10 @@ async def lifespan(app: FastAPI):
     else:
         print(f"Found {store.skill_count()} existing skills.")
 
+    # Auto-enable Jev routing if API key is set
+    if os.getenv("OPENROUTER_API_KEY"):
+        store.enable_jev_routing()
+
     yield
 
     # Cleanup
@@ -310,8 +314,11 @@ async def list_executions(limit: int = 50):
 # ── Feedback ──
 
 @app.post("/api/feedback")
-async def submit_feedback(execution_id: str, feedback: str):
-    """Submit user feedback on an execution result."""
+async def submit_feedback(execution_id: str, feedback: str, reason: str = ""):
+    """
+    Submit user feedback on an execution result.
+    Negative feedback on a skill-based execution triggers automatic refinement.
+    """
     if feedback not in ("positive", "negative"):
         raise HTTPException(400, "Feedback must be 'positive' or 'negative'")
 
@@ -319,32 +326,108 @@ async def submit_feedback(execution_id: str, feedback: str):
     for ex in executions:
         if ex["id"] == execution_id:
             ex["user_feedback"] = feedback
-            # Re-save (simple approach for SQLite)
-            with store.db_path.open():
-                import sqlite3
-                conn = sqlite3.connect(store.db_path)
-                conn.execute(
-                    "UPDATE executions SET data = ? WHERE id = ?",
-                    (json.dumps(ex), execution_id),
-                )
-                conn.commit()
-                conn.close()
 
-            # Update skill stats if applicable
+            # Save feedback
+            import sqlite3
+            conn = sqlite3.connect(store.db_path)
+            conn.execute(
+                "UPDATE executions SET data = ? WHERE id = ?",
+                (json.dumps(ex), execution_id),
+            )
+            conn.commit()
+            conn.close()
+
+            result = {"status": "ok", "execution_id": execution_id, "feedback": feedback}
+
+            # Update skill stats
             if ex.get("skill_id") and feedback == "positive":
                 skill = store.get_skill(ex["skill_id"])
                 if skill:
                     skill.stats.success_count += 1
                     store.update_skill_stats(skill.id, skill.stats)
+
             elif ex.get("skill_id") and feedback == "negative":
                 skill = store.get_skill(ex["skill_id"])
                 if skill:
                     skill.stats.fail_count += 1
                     store.update_skill_stats(skill.id, skill.stats)
 
-            return {"status": "ok", "execution_id": execution_id, "feedback": feedback}
+                    # Phase 4: Auto-refine the skill
+                    try:
+                        from app.skill_refiner import refine_skill, apply_refinement
+
+                        refinement = await refine_skill(skill, ex, reason)
+
+                        if refinement["success"]:
+                            old_version = skill.version
+                            updated_skill = apply_refinement(skill, refinement)
+
+                            # Re-compute embedding for updated description
+                            store.add_skill(updated_skill)
+
+                            result["refinement"] = {
+                                "status": "refined",
+                                "skill_name": skill.name,
+                                "old_version": old_version,
+                                "new_version": updated_skill.version,
+                                "diagnosis": refinement["diagnosis"],
+                                "changes": refinement["changes"],
+                            }
+                        else:
+                            result["refinement"] = {
+                                "status": "failed",
+                                "error": refinement.get("error", "unknown"),
+                            }
+                    except Exception as e:
+                        result["refinement"] = {
+                            "status": "error",
+                            "error": str(e),
+                        }
+
+            return result
 
     raise HTTPException(404, "Execution not found")
+
+
+@app.post("/api/skills/{skill_id}/refine")
+async def manual_refine_skill(skill_id: str, execution_id: str, reason: str = ""):
+    """
+    Manually trigger skill refinement using a specific execution.
+    Useful when you want to refine based on a specific failure.
+    """
+    from app.skill_refiner import refine_skill, apply_refinement
+
+    skill = store.get_skill(skill_id)
+    if not skill:
+        raise HTTPException(404, "Skill not found")
+
+    executions = store.list_executions(limit=500)
+    exec_data = None
+    for ex in executions:
+        if ex["id"] == execution_id:
+            exec_data = ex
+            break
+
+    if not exec_data:
+        raise HTTPException(404, "Execution not found")
+
+    refinement = await refine_skill(skill, exec_data, reason)
+
+    if refinement["success"]:
+        old_version = skill.version
+        updated_skill = apply_refinement(skill, refinement)
+        store.add_skill(updated_skill)
+
+        return {
+            "status": "refined",
+            "skill_name": skill.name,
+            "old_version": old_version,
+            "new_version": updated_skill.version,
+            "diagnosis": refinement["diagnosis"],
+            "changes": refinement["changes"],
+        }
+    else:
+        raise HTTPException(500, f"Refinement failed: {refinement.get('error')}")
 
 
 # ── Dashboard Stats ──

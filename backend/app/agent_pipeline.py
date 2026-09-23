@@ -306,10 +306,16 @@ Example: {{"topic": "machine learning", "depth": "detailed", "num_sources": 5}}"
             filled_prompt = filled_prompt.replace(f"{{{key}}}", str(value))
 
         # Replace context placeholders with accumulated output
-        filled_prompt = filled_prompt.replace("{findings}", accumulated_context)
-        filled_prompt = filled_prompt.replace("{fetched_content}", accumulated_context)
-        filled_prompt = filled_prompt.replace("{alternatives}", accumulated_context)
-        filled_prompt = filled_prompt.replace("{tool_data}", accumulated_context)
+                # Replace all common context placeholders with accumulated output
+        context_placeholders = [
+            "{findings}", "{fetched_content}", "{alternatives}", "{tool_data}",
+            "{research_results}", "{research_data}", "{research_findings}",
+            "{analysis}", "{analysis_results}", "{comparison_data}",
+            "{results}", "{data}", "{content}", "{output}",
+            "{previous_output}", "{step_output}", "{accumulated}",
+        ]
+        for placeholder in context_placeholders:
+            filled_prompt = filled_prompt.replace(placeholder, accumulated_context)
 
         start = time.time()
         step_output, step_tokens = await call_gemini(filled_prompt)
