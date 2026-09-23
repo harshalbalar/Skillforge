@@ -14,7 +14,7 @@ from app.models import Skill, SkillStats, SkillSource
 
 
 DB_PATH = Path(__file__).parent.parent / "data" / "skillforge.db"
-SIMILARITY_THRESHOLD = 0.45  # Minimum cosine similarity to route to a skill
+SIMILARITY_THRESHOLD = 0.55  # Minimum cosine similarity to route to a skill
 
 
 class SkillStore:
@@ -22,8 +22,15 @@ class SkillStore:
         self.db_path = db_path
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # all-MiniLM-L6-v2 is only ~80MB, runs fast on CPU
+        # Embedding model for similarity routing (always available)
         self.embedder = SentenceTransformer("all-MiniLM-L6-v2")
+
+        # Laya router (Phase 3, optional — enabled via enable_laya_routing())
+        self.laya_router = None
+        # Jev router (Phase 3, optional — enabled via enable_jev_routing())
+        self.jev_router = None
+        self.routing_method = "embedding"  # "embedding", "laya", or "jev"
+
         self._init_db()
 
     def _init_db(self):
@@ -111,11 +118,42 @@ class SkillStore:
 
     def find_matching_skill(self, task: str) -> tuple[Skill | None, float]:
         """
-        Find the best matching skill for a task using cosine similarity.
+        Find the best matching skill for a task.
 
+        Priority: Jev (if enabled) → Laya (if enabled) → Embeddings (default).
         Returns (skill, confidence) or (None, 0.0) if no match above threshold.
-        Phase 3: replace this method with Laya-based routing.
         """
+        if self.jev_router is not None:
+            return self._route_with_jev(task)
+
+        if self.laya_router is not None:
+            return self._route_with_laya(task)
+
+        return self._route_with_embeddings(task)
+
+    def _route_with_jev(self, task: str) -> tuple[Skill | None, float]:
+        """Route using TypeSafe Jev via OpenRouter."""
+        try:
+            self.jev_router.update_skills(self.list_skills())
+            skill, confidence = self.jev_router.route(task)
+            return skill, confidence
+        except Exception as e:
+            print(f"[Jev] Error: {e}. Falling back to embeddings.")
+            return self._route_with_embeddings(task)
+
+    def _route_with_laya(self, task: str) -> tuple[Skill | None, float]:
+        """Route using the Laya System One model."""
+        try:
+            # Update Laya's skill list in case new skills were added
+            self.laya_router.update_skills(self.list_skills())
+            skill, confidence = self.laya_router.route(task)
+            return skill, confidence
+        except Exception as e:
+            print(f"[Laya] Error during routing: {e}. Falling back to embeddings.")
+            return self._route_with_embeddings(task)
+
+    def _route_with_embeddings(self, task: str) -> tuple[Skill | None, float]:
+        """Route using cosine similarity over skill embeddings."""
         skills = self.list_skills()
         if not skills:
             return None, 0.0
@@ -140,6 +178,53 @@ class SkillStore:
             return best_skill, best_score
 
         return None, best_score
+
+    def enable_laya_routing(self, model_path: str = None) -> bool:
+        """
+        Enable Laya-based routing. Returns True if successful.
+        Requires: pip install laya
+        """
+        try:
+            from app.laya_router import LayaRouter, LAYA_AVAILABLE
+            if not LAYA_AVAILABLE:
+                print("[SkillStore] Laya package not installed. Run: pip install laya")
+                return False
+
+            skills = self.list_skills()
+            self.laya_router = LayaRouter(skills, model_path)
+            self.jev_router = None
+            self.routing_method = "laya"
+            print(f"[SkillStore] Laya routing enabled ({len(skills)} skills)")
+            return True
+        except Exception as e:
+            print(f"[SkillStore] Failed to enable Laya: {e}")
+            self.laya_router = None
+            return False
+
+    def enable_jev_routing(self, api_key: str = None) -> bool:
+        """
+        Enable Jev-based routing via OpenRouter. Returns True if successful.
+        Requires: pip install typesafe-sdk + OPENROUTER_API_KEY
+        """
+        try:
+            from app.jev_router import JevRouter
+            skills = self.list_skills()
+            self.jev_router = JevRouter(skills, api_key)
+            self.laya_router = None
+            self.routing_method = "jev"
+            print(f"[SkillStore] Jev routing enabled ({len(skills)} skills)")
+            return True
+        except Exception as e:
+            print(f"[SkillStore] Failed to enable Jev: {e}")
+            self.jev_router = None
+            return False
+
+    def disable_laya_routing(self):
+        """Switch back to embedding-based routing."""
+        self.laya_router = None
+        self.jev_router = None
+        self.routing_method = "embedding"
+        print("[SkillStore] Switched to embedding routing")
 
     # ── Execution Storage ──
 

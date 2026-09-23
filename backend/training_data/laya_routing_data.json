@@ -1,0 +1,2356 @@
+{
+  "metadata": {
+    "total_examples": 90,
+    "skills": [
+      "research_topic",
+      "compare_tools",
+      "summarize_content",
+      "find_alternatives"
+    ],
+    "skill_count": 4,
+    "tasks_per_skill": 15,
+    "none_tasks": 30
+  },
+  "examples": [
+    {
+      "state": {
+        "task": "Look into the current state of solid-state battery technology and give me a full report with sources."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "I need a comprehensive overview of how remote work affected commercial real estate post-2020, complete with citations."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Can you research the long-term health effects of microplastics exposure and synthesize the main findings from recent studies?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Do a deep dive on the history and evolution of the Silk Road, including its cultural and economic impact."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Research quantum computing advancements in 2024 and draft a structured report."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "I'm writing a paper on the impacts of deep-sea mining on marine ecosystems. Please research recent oceanographic studies, key industry regulations, and environmental concerns, and compile a detailed report with references."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Gather research on global AI governance frameworks passed in the last two years and create a cited document outlining the main regulatory approaches."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Research how dark matter detection experiments work and compile a detailed report on the current leading theories."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Put together a detailed research paper on the growth of the vertical farming industry, including key market drivers and technological barriers."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Can you research the phenomenon of linguistic drift in online communities? Cite recent sociological or linguistic research."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Research the geopolitical implications of global rare earth element supply chains, compiling key findings into a structured report."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "I need to understand the science behind CRISPR gene editing for sickle cell disease. Can you do a thorough research report on it?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Conduct a thorough research investigation on nuclear fusion energy milestones achieved over the past decade."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Research carbon capture and storage (CCS) deployment globally, detailing technology maturity, costs, and key active projects with sources."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a cited research document explaining the origin and key technological developments of early radar technology during WWII."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "research_topic",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Compare React vs Vue vs Angular for a large enterprise web application."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "What are the pros and cons of PostgreSQL vs MongoDB? Give me a side-by-side comparison."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Stripe vs Adyen comparison for international e-commerce pricing and features."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Can you compare AWS Lambda, Azure Functions, and GCP Cloud Functions?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Notion or Coda or Confluence for a startup wiki? Need a feature matrix and pricing breakdown."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Compare Slack vs Microsoft Teams for remote engineering teams."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Tailwind CSS vs Bootstrap - strengths, weaknesses, and best use cases for both."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Compare Figma and Adobe XD side by side for UI/UX design workflows."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Which CRM is better for a small B2B team: HubSpot vs Salesforce? Compare pricing, ease of use, and integration options."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Compare Python's FastAPI and Flask frameworks for building microservices."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Datadog vs New Relic vs Dynatrace head-to-head comparison for cloud observability."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Compare Jira vs Linear for issue tracking."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Compare Mailchimp, SendGrid, and ConvertKit for newsletter creators."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "PyTorch vs TensorFlow: compare their ecosystem, learning curve, and production readiness."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Put together a comparison matrix between Shopify and WooCommerce for a small business owner."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "compare_tools",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Can you give me a quick summary of this article? https://techcrunch.com/2024/01/15/ai-startup-news"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "TL;DR on this text: [The surge in remote work has redefined corporate real estate demands, forcing companies to downsize physical offices while investing heavily in digital infrastructure and asynchronous collaboration tools...]"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Summarize the main arguments presented in the research paper 'Attention Is All You Need'."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Give me the key takeaways and actionable insights from this blog post: https://hbr.org/2023/11/effective-leadership-in-crisis"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Condense this meeting transcript into 5 bullet points highlighting the main decisions made."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "What are the core takeaways from the book 'Atomic Habits' by James Clear?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "I don't have time to read this entire document. Can you extract the main points for me? [pasted text]"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Summarize this news report about the recent FTC antitrust ruling."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Give me a 2-paragraph summary explaining the key points of the European Union AI Act."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Can you read this link and explain the main points the author is making? https://medium.com/@writer/future-of-software-engineering"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Provide a concise executive summary of this quarterly earnings report text."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Summarize what this email thread is about and what actions I need to take."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Break down the main takeaways from this podcast transcript about macroeconomics."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "I need a high-level overview of this privacy policy update: https://example.com/privacy-2024"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Summarize the main ideas in this article regarding modern remote team management best practices."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "summarize_content",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "What are the best alternatives to Notion for personal note-taking and knowledge management?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Heroku is getting too expensive for my side projects. Can you find the top alternative cloud hosting platforms?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Find me open-source alternatives to Zapier for workflow automation."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Are there any free or low-cost competitors to Adobe Photoshop for basic graphics editing?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "We're looking to migrate away from Zendesk. Can you find the top enterprise customer support platforms that compete with it?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "List the main competitors to Figma in the UI/UX design space and highlight their strengths."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "What are some high-performance vector database alternatives to Pinecone?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "I want to move away from Google Analytics due to privacy concerns. What alternative website analytics tools are available?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Find alternatives to Mailchimp that offer better automated email sequencing out of the box."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Can you recommend tools similar to Trello for lightweight project management?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Looking for alternatives to Auth0 for user authentication in a Next.js application."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "What are the top 5 competitors to Salesforce for small business CRM?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Are there any self-hosted alternatives to Slack for secure team messaging?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "We need a replacement for Datadog for log monitoring that is more cost-effective."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "What are good open-source alternatives to MongoDB for document-oriented storage?"
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "find_alternatives",
+        "is_good_match": 1.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a Python script using pandas to clean duplicate rows and fill missing values in a CSV file."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Draft a sci-fi short story about an AI discovering a hidden room in its server farm."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Convert this raw JSON user object into a PostgreSQL INSERT statement."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Generate a multi-stage Dockerfile for a Node.js Express application optimized for production."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Calculate the monthly mortgage payment and total interest for a $450,000 loan at 6.5% interest over 30 years."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a polite email to a client requesting a 3-day extension on a software delivery deadline."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Identify the bug in this JavaScript snippet where the async function resolves before the fetch completes."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Rewrite this technical feature list into an engaging landing page pitch for non-technical users."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Translate this customer support response into French, maintaining a formal and apologetic tone."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Act as a senior system design interviewer and ask me 3 follow-up questions about designing a scalable URL shortener."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a regular expression that validates international phone numbers including optional country codes."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Brainstorm 10 catchy YouTube title ideas for a video about beginner home woodworking."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a complex SQL query to find the top 5 customers who spent the most money in Q3."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Proofread and edit this cover letter to improve clarity, eliminate passive voice, and fix grammatical errors."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Create a step-by-step recipe for making sourdough bread from scratch, including timing for fermentation."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Calculate the month-over-month growth percentage for this list of monthly sales figures."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write Tailwind CSS classes to build a responsive 3-column pricing card layout with a highlighted middle card."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Generate 5 engaging Twitter/X posts with hashtags to announce the launch of an open-source library."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a GitHub Actions workflow YAML file that runs unit tests on every pull request to the main branch."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Solve this logic puzzle and explain the step-by-step reasoning behind the solution."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write a 2-minute keynote speech introducing a breakthrough renewable energy startup to potential investors."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Draft a basic Privacy Policy section for a mobile app that collects user location and email address."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Calculate the terminal velocity of a 70kg skydiver in standard atmospheric conditions."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Refactor this monolithic Python function into smaller, modular functions following SOLID principles."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Create a 6-week project milestone schedule in Markdown table format for building an e-commerce MVP."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Generate a 5-question multiple-choice quiz on Python decorator concepts with answers and explanations."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Draft a standard Non-Disclosure Agreement (NDA) clause covering confidential technical documentation."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Write an OpenAPI 3.0 YAML specification for a RESTful endpoint that handles user registration."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Analyze the ethical implications of using autonomous drones in commercial delivery from a utilitarian perspective."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    },
+    {
+      "state": {
+        "task": "Design a 4-week structured running plan for a complete beginner preparing to run their first 5K race."
+      },
+      "questions": {
+        "skill_route": {
+          "type": "choice",
+          "instructions": "Which skill should handle this task? Pick the best match, or 'none' if nothing fits.",
+          "criteria": {
+            "research_topic": "Research a topic thoroughly using web search, extract key findings from multiple sources, and compile a structured report with citations.",
+            "compare_tools": "Compare multiple tools, frameworks, or technologies side by side. Research each one, find their strengths, weaknesses, pricing, and use cases, then produce a structured comparison.",
+            "summarize_content": "Summarize content from a URL, topic, or provided text. Extract the key points, main arguments, and actionable takeaways.",
+            "find_alternatives": "Find alternatives to a specific tool, service, or technology. Search for competitors, evaluate their strengths, and rank by relevance.",
+            "none": "No existing skill matches this task."
+          }
+        },
+        "is_good_match": {
+          "type": "noul",
+          "instructions": "Is there a skill that genuinely matches this task?"
+        }
+      },
+      "answers": {
+        "skill_route": "none",
+        "is_good_match": 0.0
+      }
+    }
+  ]
+}

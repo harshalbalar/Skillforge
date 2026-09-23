@@ -39,23 +39,6 @@ active_executions: dict[str, asyncio.Queue] = {}
 store: SkillStore = None  # Initialized in lifespan
 
 
-def _is_duplicate_name(name: str) -> bool:
-    """Check if a skill with a similar name already exists."""
-    existing = store.list_skills()
-    for s in existing:
-        if s.name == name:
-            return True
-        if s.name in name or name in s.name:
-            return True
-        # Also check word overlap — "explain_technical_concept" vs "explain_concept"
-        existing_words = set(s.name.split("_"))
-        new_words = set(name.split("_"))
-        overlap = existing_words & new_words
-        if len(overlap) >= 2 and len(overlap) / max(len(existing_words), len(new_words)) > 0.6:
-            return True
-    return False
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialize skill store and load default skills on startup."""
@@ -201,43 +184,34 @@ async def _run_pipeline(
 
             if result["success"]:
                 new_skill = result["skill"]
-
-                # Check 1: Name-based duplicate detection
-                if _is_duplicate_name(new_skill.name):
+                # Check for duplicate — don't add if a very similar skill exists
+                existing, similarity = store.find_matching_skill(new_skill.description)
+                if existing and similarity > 0.85:
                     await queue.put(SSEEvent(
                         event_type="skill_duplicate",
                         agent="skill_extractor",
-                        content=f"Skill with similar name already exists: {new_skill.name}. Skipped.",
+                        content=f"Similar skill already exists: {existing.name} ({similarity:.0%} match). Skipped.",
+                        metadata={"existing_skill": existing.name, "similarity": similarity},
                     ))
                 else:
-                    # Check 2: Embedding similarity duplicate detection
-                    existing, similarity = store.find_matching_skill(new_skill.description)
-                    if existing and similarity > 0.60:
-                        await queue.put(SSEEvent(
-                            event_type="skill_duplicate",
-                            agent="skill_extractor",
-                            content=f"Similar skill already exists: {existing.name} ({similarity:.0%} match). Skipped.",
-                            metadata={"existing_skill": existing.name, "similarity": similarity},
-                        ))
-                    else:
-                        stored = store.add_skill(new_skill)
-                        # Mark execution as having produced a skill
-                        execution.skill_extracted = True
-                        store.save_execution(execution.model_dump())
+                    stored = store.add_skill(new_skill)
+                    # Mark execution as having produced a skill
+                    execution.skill_extracted = True
+                    store.save_execution(execution.model_dump())
 
-                        await queue.put(SSEEvent(
-                            event_type="skill_extracted",
-                            agent="skill_extractor",
-                            content=f"New skill learned: {stored.name}",
-                            metadata={
-                                "skill_id": stored.id,
-                                "skill_name": stored.name,
-                                "skill_description": stored.description,
-                                "parameters": list(stored.parameters.keys()),
-                                "category": result.get("category", "other"),
-                                "extraction_tokens": result.get("extraction_tokens", 0),
-                            },
-                        ))
+                    await queue.put(SSEEvent(
+                        event_type="skill_extracted",
+                        agent="skill_extractor",
+                        content=f"New skill learned: {stored.name}",
+                        metadata={
+                            "skill_id": stored.id,
+                            "skill_name": stored.name,
+                            "skill_description": stored.description,
+                            "parameters": list(stored.parameters.keys()),
+                            "category": result.get("category", "other"),
+                            "extraction_tokens": result.get("extraction_tokens", 0),
+                        },
+                    ))
             else:
                 await queue.put(SSEEvent(
                     event_type="extraction_failed",
@@ -346,14 +320,15 @@ async def submit_feedback(execution_id: str, feedback: str):
         if ex["id"] == execution_id:
             ex["user_feedback"] = feedback
             # Re-save (simple approach for SQLite)
-            import sqlite3
-            conn = sqlite3.connect(store.db_path)
-            conn.execute(
-                "UPDATE executions SET data = ? WHERE id = ?",
-                (json.dumps(ex), execution_id),
-            )
-            conn.commit()
-            conn.close()
+            with store.db_path.open():
+                import sqlite3
+                conn = sqlite3.connect(store.db_path)
+                conn.execute(
+                    "UPDATE executions SET data = ? WHERE id = ?",
+                    (json.dumps(ex), execution_id),
+                )
+                conn.commit()
+                conn.close()
 
             # Update skill stats if applicable
             if ex.get("skill_id") and feedback == "positive":
@@ -459,16 +434,9 @@ async def extract_skill_manually(execution_id: str):
     if result["success"]:
         new_skill = result["skill"]
 
-        # Check 1: Name duplicate
-        if _is_duplicate_name(new_skill.name):
-            return {
-                "status": "duplicate",
-                "message": f"Skill with similar name already exists: {new_skill.name}",
-            }
-
-        # Check 2: Embedding duplicate
+        # Check for duplicates
         existing, similarity = store.find_matching_skill(new_skill.description)
-        if existing and similarity > 0.60:
+        if existing and similarity > 0.85:
             return {
                 "status": "duplicate",
                 "message": f"Similar skill already exists: {existing.name} ({similarity:.0%} match)",
@@ -510,3 +478,83 @@ async def delete_skill(skill_id: str):
         raise HTTPException(404, "Skill not found")
     store.delete_skill(skill_id)
     return {"status": "ok", "deleted": skill_id, "name": skill.name}
+
+
+# ── Phase 3: Laya Router Management ──
+
+@app.post("/api/router/laya/enable")
+async def enable_laya(model_path: str = None):
+    """Enable Laya-based routing. Optionally specify a fine-tuned model path."""
+    success = store.enable_laya_routing(model_path)
+    if success:
+        return {"status": "ok", "routing_method": "laya", "is_finetuned": store.laya_router.is_finetuned}
+    raise HTTPException(500, "Failed to enable Laya. Is it installed? pip install laya")
+
+
+@app.post("/api/router/jev/enable")
+async def enable_jev():
+    """Enable Jev-based routing via OpenRouter. Requires OPENROUTER_API_KEY in .env."""
+    success = store.enable_jev_routing()
+    if success:
+        return {"status": "ok", "routing_method": "jev"}
+    raise HTTPException(500, "Failed to enable Jev. Is typesafe-sdk installed? Is OPENROUTER_API_KEY set?")
+
+
+@app.post("/api/router/embedding/enable")
+async def enable_embedding():
+    """Switch back to embedding-based routing."""
+    store.disable_laya_routing()
+    return {"status": "ok", "routing_method": "embedding"}
+
+
+@app.get("/api/router/status")
+async def router_status():
+    """Check current routing method and diagnostics."""
+    return {
+        "routing_method": store.routing_method,
+        "jev_available": store.jev_router is not None,
+        "laya_available": store.laya_router is not None,
+        "laya_finetuned": store.laya_router.is_finetuned if store.laya_router else None,
+        "skill_count": store.skill_count(),
+    }
+
+
+@app.post("/api/router/diagnose")
+async def diagnose_routing(request: TaskRequest):
+    """Run all available routers on a task and compare their decisions."""
+    task = request.task.strip()
+    if not task:
+        raise HTTPException(400, "Task cannot be empty")
+
+    results = {"task": task, "active_router": store.routing_method}
+
+    # Embedding router (always available)
+    emb_skill, emb_conf = store._route_with_embeddings(task)
+    results["embedding"] = {
+        "skill": emb_skill.name if emb_skill else None,
+        "confidence": round(emb_conf, 4),
+    }
+
+    # Jev router
+    if store.jev_router:
+        diag = store.jev_router.get_diagnostics(task)
+        results["jev"] = diag
+    else:
+        results["jev"] = {"status": "not loaded — POST /api/router/jev/enable"}
+
+    # Laya router
+    if store.laya_router:
+        diag = store.laya_router.get_diagnostics(task)
+        results["laya"] = diag
+    else:
+        results["laya"] = {"status": "not loaded"}
+
+    return results
+
+
+@app.post("/api/generate-training-data")
+async def generate_training_data_endpoint():
+    """Generate Laya fine-tuning data from the current skill library."""
+    from app.generate_training_data import generate_training_data
+    result = await generate_training_data(skills_endpoint="http://localhost:8000/api/skills")
+    return result
