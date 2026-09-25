@@ -104,38 +104,81 @@ Return ONLY a JSON object:
         metadata={"duration_ms": plan_duration},
     )
 
-    # Step 2: Researcher — execute each search step
+    # Step 2: Researcher — web search + compile findings
     yield SSEEvent(
         event_type="agent_start",
         agent="researcher",
         action="researching",
-        content="Gathering information from sources...",
+        content="Searching the web for real-time data...",
     )
 
+    # Phase 5: Run web searches based on the plan
+    web_context = ""
+    try:
+        from app.web_search import web_search, multi_search, format_multi_search
+        import json as _json
+
+        # Extract search queries from the plan
+        search_queries = []
+        try:
+            plan_data = _json.loads(plan_text.strip().strip("`").replace("json\n", ""))
+            for step in plan_data.get("steps", []):
+                q = step.get("search_query", "")
+                if q:
+                    search_queries.append(q)
+        except:
+            # If plan isn't valid JSON, create queries from the task
+            search_queries = [task]
+
+        if not search_queries:
+            search_queries = [task]
+
+        # Run searches in parallel
+        search_results = await multi_search(search_queries[:4], max_results=3)
+        web_context = format_multi_search(search_results)
+
+        if web_context:
+            yield SSEEvent(
+                event_type="agent_start",
+                agent="researcher",
+                action="web_search_complete",
+                content=f"Found data from {sum(r.get('result_count', 0) for r in search_results)} web sources",
+            )
+    except ImportError:
+        web_context = "[Web search not available — using Gemini knowledge only]"
+    except Exception as e:
+        web_context = f"[Web search failed: {e} — using Gemini knowledge only]"
+
     start = time.time()
-    research_prompt = f"""You are a thorough research agent.
+    research_prompt = f"""You are a thorough research agent with access to real-time web data.
 
 Task: {task}
 Plan: {plan_text}
 
-Execute the research plan. For each step:
-1. Provide detailed, factual information
-2. Include specific names, numbers, and examples
-3. Cite what you know from your training data
+=== REAL-TIME WEB SEARCH RESULTS ===
+{web_context if web_context else "[No web results available]"}
+=== END WEB RESULTS ===
+
+Using BOTH the web search results above AND your own knowledge:
+1. Prioritize current, real-time data from web results when available
+2. Fill gaps with your training knowledge
+3. Flag when information comes from web search vs your knowledge
+4. Include specific names, numbers, versions, and dates
 
 Compile ALL your research findings into a comprehensive JSON:
 {{
     "findings": [
         {{
             "question": "what was researched",
-            "answer": "detailed findings",
+            "answer": "detailed findings with current data",
             "key_points": ["point1", "point2"],
+            "source": "web|knowledge|both",
             "confidence": "high|medium|low"
         }}
     ]
 }}
 
-Be thorough and specific. No vague generalities."""
+Be thorough, specific, and current. Prefer web data over training data when they conflict."""
 
     research_text, research_tokens = await call_gemini(research_prompt)
     research_duration = int((time.time() - start) * 1000)
@@ -305,8 +348,7 @@ Example: {{"topic": "machine learning", "depth": "detailed", "num_sources": 5}}"
         for key, value in params.items():
             filled_prompt = filled_prompt.replace(f"{{{key}}}", str(value))
 
-        # Replace context placeholders with accumulated output
-                # Replace all common context placeholders with accumulated output
+        # Replace all common context placeholders with accumulated output
         context_placeholders = [
             "{findings}", "{fetched_content}", "{alternatives}", "{tool_data}",
             "{research_results}", "{research_data}", "{research_findings}",
@@ -316,6 +358,29 @@ Example: {{"topic": "machine learning", "depth": "detailed", "num_sources": 5}}"
         ]
         for placeholder in context_placeholders:
             filled_prompt = filled_prompt.replace(placeholder, accumulated_context)
+
+        # Phase 5: Add web search for researcher steps
+        web_context = ""
+        if step.agent == "researcher":
+            try:
+                from app.web_search import web_search, format_search_results
+
+                # Build a search query from the filled prompt (first 200 chars)
+                search_query = task[:150]
+                search_result = await web_search(search_query, max_results=3)
+                web_context = format_search_results(search_result)
+
+                if web_context and search_result.get("success"):
+                    yield SSEEvent(
+                        event_type="agent_start",
+                        agent="researcher",
+                        action="web_search_complete",
+                        content=f"Found {search_result.get('result_count', 0)} web sources",
+                    )
+
+                    filled_prompt += f"\n\n=== REAL-TIME WEB DATA ===\n{web_context}\n=== END WEB DATA ===\n\nUse this real-time web data to ground your response with current information."
+            except:
+                pass  # Web search is optional, continue without it
 
         start = time.time()
         step_output, step_tokens = await call_gemini(filled_prompt)
